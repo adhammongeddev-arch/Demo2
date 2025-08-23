@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Grain Cafe | Our Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4a373;
+            --secondary: #fefae0;
+            --accent: #ccd5ae;
+            --dark: #3c3c3c;
+            --light: #f8f9fa;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: relative;
+            height: 100px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            margin-left: 25px;
+            height: 100px;           /* make logo bigger */
+            position: absolute; 
+            top: 50%;
+            left: 20px;              /* adjust horizontally */
+            transform: translateY(-50%)
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {          
+            margin-left: 80px;
+            margin-top: 15px;
+
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover, nav ul li.active a {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 90px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .divider {
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 0 auto 20px;
+        }
+        
+        /* Products Section */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .product-info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--dark);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            position: relative;
+            padding: 80px 0;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(249, 250, 251, 0.7);
+            z-index: 1;
+        }
+        
+        .contact-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-form input, .contact-form textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-form button {
+            padding: 15px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        
+        .contact-form button:hover {
+            background: var(--dark);
+        }
+        
+        .contact-call-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        
+        .contact-call-btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 40px 0;
+        }
+        
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-col ul li i {
+            margin-right: 10px;
+            color: var(--primary);
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                margin-top: 120px;
+                height: auto;
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .category-filter {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html"><img src="Images-Demo1/509986886_122180907680311313_6139109192193982678_n.jpg" alt="Golden Grain Cafe Logo" class="logo"></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="products.html">Menu</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        <a href="tel:+353 987 654 421" class="call-button">
+  <i class="fas fa-phone"></i> +353 987 654 421
+</a>
+<style>
+.call-button {
+  display: inline-block;
+  background-color: #D4A373; /* Warm terracotta to match your color scheme */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 15px;
+}
+
+.call-button:hover {
+  background-color: #b3875f; /* Slightly darker shade */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+</style>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Complete Menu</h1>
+            <p>Explore our full selection of artisan coffees, fresh pastries, and delicious meals</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Complete Menu</h2>
+                <div class="divider"></div>
+                <p>All our food and drinks are made fresh daily with the finest ingredients</p>
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All Items</button>
+                <button class="filter-btn" data-filter="coffee">Coffee & Drinks</button>
+                <button class="filter-btn" data-filter="pastries">Pastries</button>
+                <button class="filter-btn" data-filter="meals">Meals</button>
+                <button class="filter-btn" data-filter="desserts">Desserts</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Coffee & Drinks -->
+                <div class="product-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Specialty Coffee" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Specialty Coffee</h3>
+                        <p>Freshly roasted beans brewed to perfection by our skilled baristas</p>
+                        <span class="price">€3.50 - €5.00</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="coffee">
+                    <img src="Images-Demo1/irene-fernandez-XJ_5csAf4xM-unsplash.jpg" alt="Smoothies" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-blender"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Smoothies</h3>
+                        <p>Nutritious smoothies made with fresh fruits, vegetables and superfoods</p>
+                        <span class="price">€5.50 - €6.50</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="coffee">
+                    <img src="Images-Demo1/lisa-hobbs-mRaNok_Ld6s-unsplash.jpg" alt="Herbal Tea" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Herbal Teas</h3>
+                        <p>Selection of premium loose-leaf teas served with honey and lemon</p>
+                        <span class="price">€3.00 - €4.00</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="coffee">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iced Coffee" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Iced Coffee</h3>
+                        <p>Chilled coffee with milk and choice of flavor syrups</p>
+                        <span class="price">€4.50</span>
+                    </div>
+                </div>
+                
+                <!-- Pastries -->
+                <div class="product-card" data-category="pastries">
+                    <img src="https://images.unsplash.com/photo-1623334044303-241021148842?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Croissants" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>French Pastries</h3>
+                        <p>Flaky, buttery croissants and pastries made with authentic French techniques</p>
+                        <span class="price">€2.75 - €4.50</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="pastries">
+                    <img src="Images-Demo1/aneta-voborilova-aFqKIFZ-Idg-unsplash.jpg" alt="Muffins" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Muffins</h3>
+                        <p>Daily baked muffins with seasonal fruits and premium ingredients</p>
+                        <span class="price">€2.50 each</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="pastries">
+                    <img src="Images-Demo1/craig-bradford-TZZHPuL2Z2s-unsplash.jpg" alt="Scones" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Artisan Scones</h3>
+                        <p>Traditional British scones served with clotted cream and jam</p>
+                        <span class="price">€3.25 each</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="pastries">
+                    <img src="Images-Demo1/images.webp" alt="Danishes" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fruit Danishes</h3>
+                        <p>Flaky pastry with sweet cheese and fruit fillings</p>
+                        <span class="price">€3.75 each</span>
+                    </div>
+                </div>
+                
+                <!-- Meals -->
+                <div class="product-card" data-category="meals">
+                    <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sandwiches" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-hamburger"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gourmet Sandwiches</h3>
+                        <p>Made daily with our artisan bread and the freshest local ingredients</p>
+                        <span class="price">€7.20 - €9.50</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="meals">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Salads" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Fresh Salads</h3>
+                        <p>Healthy salads with organic greens, seasonal vegetables and homemade dressings</p>
+                        <span class="price">€8.50 - €10.50</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="meals">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pizza" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Artisan Pizza</h3>
+                        <p>Wood-fired pizzas with homemade dough and premium toppings</p>
+                        <span class="price">€10.00 - €14.00</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="meals">
+                    <img src="Images-Demo1/brett-wharton-6DGdYWLKTr8-unsplash.jpg" 
+                    alt="Breakfast" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Breakfast Plates</h3>
+                        <p>Hearty breakfast options served all day with free-range eggs and artisan bread</p>
+                        <span class="price">€9.00 - €12.00</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="meals">
+                    <img src="Images-Demo1/images (1).webp" alt="Quiche" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Savory Quiches</h3>
+                        <p>Flaky pastry filled with seasonal vegetables, cheese, and free-range eggs</p>
+                        <span class="price">€6.50 per slice</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="meals">
+                    <img src="Images-Demo1/ala-tktUuZ2YBKk-unsplash.jpg" alt="Soups" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-utensil-spoon"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Homemade Soups</h3>
+                        <p>Hearty soups made from scratch daily, served with artisan bread</p>
+                        <span class="price">€5.50 - €7.00</span>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="product-card" data-category="desserts">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cakes" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Homemade Cakes</h3>
+                        <p>Delicious cakes and desserts baked fresh daily in our kitchen</p>
+                        <span class="price">€4.50 per slice</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="desserts">
+                    <img src="Images-Demo1/yulia-khlebnikova-FDYbS43jUrU-unsplash.jpg" alt="Cheesecake" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>New York Cheesecake</h3>
+                        <p>Rich and creamy cheesecake with a biscuit base and berry compote</p>
+                        <span class="price">€5.00 per slice</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="desserts">
+                    <img src="Images-Demo1/anna-przepiorka-LjtviHokbr4-unsplash.jpg" alt="Brownies" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chocolate Brownies</h3>
+                        <p>Decadent chocolate brownies with a fudgy center and crunchy top</p>
+                        <span class="price">€3.75 each</span>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="desserts">
+                    <img src="Images-Demo1/sheri-silver-eyXqViCDjIw-unsplash.jpg" alt="Tarts" class="product-img">
+                    <div class="product-icon">
+                        <i class="fas fa-pie-chart"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Seasonal Tarts</h3>
+                        <p>Buttery shortcrust pastry filled with seasonal fruits and custard</p>
+                        <span class="price">€4.25 per slice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <div class="divider"></div>
+                <p>Have questions or want to place a large order? Get in touch with us!</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div style="text-align:center; margin-top:20px;">
+                <a href="tel:+353987654321" class="contact-call-btn"><i class="fas fa-phone"></i> Call Us: +353 987 654 321</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Golden Grain Cafe</h3>
+                    <p>Artisan cafe crafting delicious coffees, pastries and light meals with care since 1985.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Menu</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, Dublin, Ireland</li>
+                        <li><i class="fas fa-phone"></i> (01) 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@goldengraincafe.ie</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Opening Hours</h3>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> Monday - Friday: 7am - 7pm</li>
+                        <li><i class="fas fa-clock"></i> Saturday: 8am - 6pm</li>
+                        <li><i class="fas fa-clock"></i> Sunday: 9am - 5pm</li>
+                        <li><i class="fas fa-coffee"></i> Kitchen closes 1 hour before closing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Golden Grain Cafe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        function toggleBackToTop() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Initialize Google Maps
+        function initMap() {
+            // Dublin coordinates
+            const dublin = { lat: 53.3498, lng: -6.2603 };
+            
+            // Create map
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: dublin,
+                styles: [
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#444444"}]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [{"color": "#f2f2f2"}]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [{"saturation": -100}, {"lightness": 45}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "simplified"}]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.icon",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [{"visibility": "off"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [{"color": "#d4a373"}, {"visibility": "on"}]
+                    }
+                ]
+            });
+            
+            // Create marker
+            const marker = new google.maps.Marker({
+                position: dublin,
+                map: map,
+                title: 'Golden Grain Cafe',
+                icon: {
+                    url: 'https://i.ibb.co/0jQ7ZqM/golden-grain-logo.png',
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+            });
+            
+            // Create info window
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div style="padding: 10px;">
+                        <h3 style="margin-bottom: 5px; color: #d4a373;">Golden Grain Cafe</h3>
+                        <p style="margin: 0;">123 Main Street, Dublin, Ireland</p>
+                        <p style="margin: 5px 0;"><strong>Hours:</strong> Mon-Fri 7am-7pm</p>
+                    </div>
+                `
+            });
+            
+            // Add click event to marker
+            marker.addListener('click', () => {
+                infoWindow.open(map, marker);
+            });
+        }
+        
+        // Product filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Initialize back to top button
+            if (backToTopButton) {
+                window.addEventListener('scroll', toggleBackToTop);
+                backToTopButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToTop();
+                });
+            }
+        });
+        </script>
+</body>
+</html>
