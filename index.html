@@ -550,7 +550,12 @@
             .header-container {
                 flex-direction: column;
             }
-            
+            header{
+            height: 120px;
+            }
+            .header-call-button{
+                display: none;
+            }
             nav ul {
                 margin-top: 15px;
             }
@@ -579,7 +584,9 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+            .header-call-button{
+                display: none;
+            }
             nav ul li {
                 margin: 5px 10px;
             }
@@ -610,6 +617,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="header-call-button">
 <a href="tel:+353 987 654 421" class="call-button">
   <i class="fas fa-phone"></i> +353 987 654 421
 </a>
@@ -635,11 +643,11 @@
 }
 </style>
     </header>
-
+</div>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Golden Grain with Tradition</h1>
+            <h1>The Golden Grain with Tradition</h1>
             <p>Handcrafted coffees, pastries and light meals made with the finest ingredients and traditional methods</p>
             <a href="products.html" class="btn">Explore Our Menu</a>
         </div>
@@ -1114,5 +1122,4 @@
         });
     </script>
 </body>
-
 </html>
