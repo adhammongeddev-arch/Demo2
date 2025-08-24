@@ -91,6 +91,25 @@
             color: var(--primary);
         }
         
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
@@ -450,7 +469,21 @@
             background-color: var(--dark);
             transform: translateY(-3px);
         }
-        
+        .header-call-button-mobile{
+            display: none;
+        }
+        .header-call-button{
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: 0.3s;
+            border-radius: 60px;
+            cursor: pointer;
+         }
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
@@ -462,13 +495,54 @@
             .header-container {
                 flex-direction: column;
             }
+            .header-call-button{
+                margin-left: 30px;
+            }
+            header {
+                height: 120px;    
+            }
+            
+            /* Hamburger Menu Styles for Mobile */
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 35px;
+                right: 20px;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
             
             nav ul {
-                margin-top: 15px;
+                position: fixed;
+                left: -100%;
+                top: 100px;
+                gap: 0;
+                flex-direction: column;
+                background-color: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+                z-index: 999;
             }
             
             nav ul li {
-                margin: 0 10px;
+                margin: 1rem 0;
+            }
+            
+            nav ul.active {
+                left: 0;
             }
             
             .hero {
@@ -521,8 +595,16 @@
     <header>
         <div class="container header-container">
             <a href="index.html"><img src="Images-Demo1/509986886_122180907680311313_6139109192193982678_n.jpg" alt="Golden Grain Cafe Logo" class="logo"></a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
             <nav>
-                <ul>
+                <ul id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li class="active"><a href="products.html">Menu</a></li>
                     <li><a href="index.html#services">Services</a></li>
@@ -531,29 +613,18 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-        <a href="tel:+353 987 654 421" class="call-button">
-  <i class="fas fa-phone"></i> +353 987 654 421
-</a>
-<style>
-.call-button {
-  display: inline-block;
-  background-color: #D4A373; /* Warm terracotta to match your color scheme */
-  color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 15px;
-}
+                        <a href="tel:+353 987 654 421" class="call-button"></a>
+            <div class="header-call-button" style="text-align:center; margin-top:20px;">
+                
+                    <i class="fas fa-phone"></i> +353 987 654 421
+                </a>
+            </div>
+            </div>
+                <style>
 
-.call-button:hover {
-  background-color: #b3875f; /* Slightly darker shade */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-</style>
+                </style> 
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -899,85 +970,21 @@
             });
         }
         
-        // Initialize Google Maps
-        function initMap() {
-            // Dublin coordinates
-            const dublin = { lat: 53.3498, lng: -6.2603 };
-            
-            // Create map
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: dublin,
-                styles: [
-                    {
-                        "featureType": "administrative",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{"color": "#444444"}]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "all",
-                        "stylers": [{"color": "#f2f2f2"}]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "all",
-                        "stylers": [{"saturation": -100}, {"lightness": 45}]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "simplified"}]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "labels.icon",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "all",
-                        "stylers": [{"color": "#d4a373"}, {"visibility": "on"}]
-                    }
-                ]
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
             });
             
-            // Create marker
-            const marker = new google.maps.Marker({
-                position: dublin,
-                map: map,
-                title: 'Golden Grain Cafe',
-                icon: {
-                    url: 'https://i.ibb.co/0jQ7ZqM/golden-grain-logo.png',
-                    scaledSize: new google.maps.Size(40, 40)
-                }
-            });
-            
-            // Create info window
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div style="padding: 10px;">
-                        <h3 style="margin-bottom: 5px; color: #d4a373;">Golden Grain Cafe</h3>
-                        <p style="margin: 0;">123 Main Street, Dublin, Ireland</p>
-                        <p style="margin: 5px 0;"><strong>Hours:</strong> Mon-Fri 7am-7pm</p>
-                    </div>
-                `
-            });
-            
-            // Add click event to marker
-            marker.addListener('click', () => {
-                infoWindow.open(map, marker);
-            });
+            // Close menu when clicking on a link
+            document.querySelectorAll("#nav-menu a").forEach(n => n.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            }));
         }
         
         // Product filtering
@@ -1014,7 +1021,6 @@
                 });
             }
         });
-        </script>
+    </script>
 </body>
-
 </html>
