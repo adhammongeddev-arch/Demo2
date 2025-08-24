@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Golden Grain Cafe | Artisan Coffee & Bakery</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-            <script src="https://kit.fontawesome.com/45eebac404.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/45eebac404.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --primary: #d4a373;
@@ -90,6 +89,25 @@
         
         nav ul li a:hover, nav ul li.active a {
             color: var(--primary);
+        }
+        
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            z-index: 1001;
+        }
+        
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark);
+            transition: all 0.3s ease;
         }
         
         /* Hero Section */
@@ -415,18 +433,22 @@
             background: var(--dark);
             color: white;
         }
-        
-        /* Map Section */
-        .map-section {
-            padding: 40px 0;
+         .header-call-button, .header-call-button-mobile{
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: 0.3s;
+            border-radius: 60px;
+            cursor: pointer;
         }
         
-        #map {
-            height: 400px;
-            width: 100%;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .header-call-button-mobile:hover, .header-call-button:hover {
+            background: var(--dark);
+            color: white;
         }
         
         /* Footer */
@@ -534,7 +556,9 @@
             background-color: var(--dark);
             transform: translateY(-3px);
         }
-        
+        .header-call-button-mobile{
+            display: none;
+        }
         /* Responsive Styles */
         @media (max-width: 992px) {
             .about-container {
@@ -550,18 +574,69 @@
             .header-container {
                 flex-direction: column;
             }
-            header{
-            height: 120px;
+            header {
+                height: 120px;
             }
-            .header-call-button{
+             .header-call-button-mobile{
+            display: inline;
+            margin-top: 30px;
+            margin-left: 25px;
+            border-radius: 60px;
+            cursor: pointer;
+        }
+            .header-call-button {
                 display: none;
             }
+            
             nav ul {
                 margin-top: 15px;
             }
             
             nav ul li {
                 margin: 0 10px;
+            }
+            
+            /* Hamburger Menu Styles for Mobile */
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 35px;
+                right: 20px;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 100px;
+                gap: 0;
+                flex-direction: column;
+                background-color: #fff;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+                z-index: 999;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            nav ul.active {
+                left: 0;
             }
             
             .hero {
@@ -584,9 +659,11 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            .header-call-button{
+            
+            .header-call-button {
                 display: none;
             }
+            
             nav ul li {
                 margin: 5px 10px;
             }
@@ -607,8 +684,16 @@
     <header>
         <div class="container header-container">
             <a href="index.html"><img src="Images-Demo1/509986886_122180907680311313_6139109192193982678_n.jpg" alt="Golden Grain Cafe Logo" class="logo"></a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
             <nav>
-                <ul>
+                <ul id="nav-menu">
                     <li class="active"><a href="index.html">Home</a></li>
                     <li><a href="products.html">Menu</a></li>
                     <li><a href="#services">Services</a></li>
@@ -617,33 +702,21 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="header-call-button">
-<a href="tel:+353 987 654 421" class="call-button">
-  <i class="fas fa-phone"></i> +353 987 654 421
-</a>
+            <a href="tel:+353 987 654 421" class="call-button"></a>
+            <div class="header-call-button" style="text-align:center; margin-top:20px;">
+                
+                    <i class="fas fa-phone"></i> +353 987 654 421
+                </a>
+            </div>
+                            <a href="tel:+353 987 654 421" class="call-button"></a>
+            <div class="header-call-button-mobile" style="text-align:center; margin-top:20px;">
 
-<style>
-.call-button {
-  display: inline-block;
-  background-color: #D4A373; /* Warm terracotta to match your color scheme */
-  color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-top: 15px;
-}
-
-.call-button:hover {
-  background-color: #b3875f; /* Slightly darker shade */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-</style>
+                    <i class="fas fa-phone"></i> +353 987 654 421
+                </a>
+            </div>
+        </div>
     </header>
-</div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -1004,105 +1077,20 @@
             });
         }
         
-        // Initialize Google Maps
-        function initMap() {
-            // Dublin coordinates
-            const dublin = { lat: 53.3498, lng: -6.2603 };
-            
-            // Create map
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: dublin,
-                styles: [
-                    {
-                        "featureType": "administrative",
-                        "elementType": "labels.text.fill",
-                        "stylers": [{"color": "#444444"}]
-                    },
-                    {
-                        "featureType": "landscape",
-                        "elementType": "all",
-                        "stylers": [{"color": "#f2f2f2"}]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "all",
-                        "stylers": [{"saturation": -100}, {"lightness": 45}]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "simplified"}]
-                    },
-                    {
-                        "featureType": "road.arterial",
-                        "elementType": "labels.icon",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "transit",
-                        "elementType": "all",
-                        "stylers": [{"visibility": "off"}]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "all",
-                        "stylers": [{"color": "#d4a373"}, {"visibility": "on"}]
-                    }
-                ]
-            });
-            
-            // Create marker
-            const marker = new google.maps.Marker({
-                position: dublin,
-                map: map,
-                title: 'Golden Grain Cafe',
-                icon: {
-                    url: 'https://i.ibb.co/0jQ7ZqM/golden-grain-logo.png',
-                    scaledSize: new google.maps.Size(40, 40)
-                }
-            });
-            
-            // Create info window
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div style="padding: 10px;">
-                        <h3 style="margin-bottom: 5px; color: #d4a373;">Golden Grain Cafe</h3>
-                        <p style="margin: 0;">123 Main Street, Dublin, Ireland</p>
-                        <p style="margin: 5px 0;"><strong>Hours:</strong> Mon-Fri 7am-7pm</p>
-                    </div>
-                `
-            });
-            
-            // Add click event to marker
-            marker.addListener('click', () => {
-                infoWindow.open(map, marker);
-            });
-        }
+        // Hamburger Menu Functionality
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
         
-        // Smooth scrolling for anchor links
-        function initSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
         
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
@@ -1115,11 +1103,9 @@
                 });
             }
             
-            // Initialize smooth scrolling
-            initSmoothScrolling();
-            
             console.log('Cafe website initialized successfully!');
         });
     </script>
 </body>
 </html>
+
